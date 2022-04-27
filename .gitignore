@@ -1,2 +1,6 @@
 node_modules
 .env
+uploads/characters/*.jpg
+uploads/characters/*.jpeg
+uploads/characters/*.gif
+uploads/characters/*.png
