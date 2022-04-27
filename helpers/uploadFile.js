@@ -31,5 +31,5 @@ const guardarFile = (
 }
 
 module.exports = {
-    guardarFile,
+  guardarFile,
 }

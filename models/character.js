@@ -34,9 +34,6 @@ const Character = sequelize.define('Character', {
   timestamps: false,
 });
 
-// `sequelize.define` also returns the model
-console.log(Character === sequelize.models.Character);
-
 module.exports = {
     Character
 }
