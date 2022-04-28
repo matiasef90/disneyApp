@@ -1,6 +1,6 @@
 const { Router } = require('express')
 const { check } = require('express-validator');
-const { register } = require('../controllers/user');
+const { register, login } = require('../controllers/user');
 const { existeEmail } = require('../helpers');
 const { validarCampos } = require('../middlewares');
 
@@ -12,5 +12,10 @@ router.post('/register', [
     check('password', 'La password debe tener mínimo 6 caracteres').isLength({ min: 6 }),
     validarCampos
 ] , register);
+router.post('/login', [
+    check('email', 'El email es obligatorio').isEmail(),
+    check('password', 'Contraseña incorrecta').isLength({ min: 6 }),
+    validarCampos
+] , login);
 
 module.exports = router

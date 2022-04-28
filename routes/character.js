@@ -7,11 +7,12 @@ const {
     deleteCharacter,
     getCharacter
 } = require('../controllers');
-const { validarCampos, validarFile } = require('../middlewares');
+const { validarCampos, validarFile, validarJwt } = require('../middlewares');
 
 const router = Router();
 
 router.post('/', [
+    validarJwt,
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('edad', 'La edad es obligatorio').not().isEmpty(),
     check('edad', 'La edad debe ser un numero entero').isInt(),
@@ -23,6 +24,7 @@ router.post('/', [
 ] , createCharacter);
 
 router.put('/:id', [
+    validarJwt,
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('id', 'La id debe ser un numero entero').isInt(),
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
@@ -35,15 +37,19 @@ router.put('/:id', [
 ] , updateCharacter);
 
 router.delete('/:id', [
+    validarJwt,
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('id', 'La id debe ser un numero entero').isInt(),
 ], deleteCharacter)
 
 router.get('/:id', [
+    validarJwt,
     check('id', 'El id es obligatorio').not().isEmpty(),
     check('id', 'La id debe ser un numero entero').isInt(),
 ], getCharacter)
 
-router.get('/', listaCharacter);
+router.get('/', [
+    validarJwt,
+],listaCharacter);
 
 module.exports = router
