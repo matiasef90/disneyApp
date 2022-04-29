@@ -44,7 +44,7 @@ const updateCharacter = async (req = request, res = response) => {
          const resp = await guardarFile(req.files, 'characters', undefined, existe.imagen)
          data.imagen = resp.nombre_imagen
       }
-      const character = await Character.update(data, {
+      await Character.update(data, {
          where: {
             id
          }
