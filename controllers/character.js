@@ -1,6 +1,7 @@
 const { request, response } = require("express");
 const { guardarFile } = require("../helpers");
 const { Character } = require("../models/character");
+const { Movie } = require("../models/movie");
 
 
 const createCharacter = async (req = request, res = response) => {
@@ -82,7 +83,8 @@ const getCharacter = async (req = request, res = response) => {
       where: {
          id,
          estado: true
-      }
+      },
+      include: [ Movie ],
    })
    if (!existe) return res.status(400).json({
       msg: `No existe el personaje con id ${id}`

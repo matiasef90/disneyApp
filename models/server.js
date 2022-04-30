@@ -15,6 +15,7 @@ const routes = () => {
     app.use('/api/auth', require('../routes/auth'));
     app.use('/api/character', require('../routes/character'));
     app.use('/api/genero', require('../routes/genero'));
+    app.use('/api/movie', require('../routes/movie'));
 }
 
 const listen = (db) => {
